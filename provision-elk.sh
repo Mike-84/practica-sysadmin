@@ -7,7 +7,7 @@ DESTINO_MOUNT="/var/lib/elasticsearch"
 
 
 # INICIO SCRIPT
-# Chequo de que el script corre como root
+# Chequeo de que el script corre como root 
 
 if [[ $EUID -ne 0 ]]; then
    echo "Ejecuta este script como root (o con sudo)" 

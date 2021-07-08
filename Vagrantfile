@@ -113,7 +113,7 @@ Vagrant.configure("2") do |config|
 		
     end  
     wordpress.vm.network "private_network", ip: "192.168.11.10", nic_type: "virtio", virtualbox__intnet: "mynetwork"
-	wordpress.vm.network "forwarded_port", guest: 81, host: 80
+	wordpress.vm.network "forwarded_port", guest: 81, host: 8082
     wordpress.vm.network "forwarded_port", guest: 80, host: 8080
     wordpress.vm.network "forwarded_port", guest: 3306, host: 3306 
     wordpress.vm.provision "shell", path: "provision-wordpress.sh"

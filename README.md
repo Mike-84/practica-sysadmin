@@ -7,11 +7,6 @@ Una vez clonado el repositorio lo unico que se tiene que hacer es vagrant up don
 
 Con wordpress funcionando, se podrá ir a localhost:8081 y esto accederá a kibana el cual entrando en discover se podrá comprobar que los logs llegan.
 
-## Detalles técnicos
-
-- Port forwarding:
-
-Puerto en ***
 
 
 # Notas:
@@ -27,6 +22,7 @@ Puerto en ***
 	- http://localhost:8080/ <-> wordpress
 	- http://localhost:8081/ <-> kibana acceso directo
 	- http://localhost:8082/ <-> kibana via nginx con autenticacion (htpasswd)
+	
 
 - En MySQL se crea una base de datos (llamado wordpress), un usario (wordpressuser) y con una contraseña (Mik84), pero se pueden cambiar en la carpeta de resources y en el archivo wordpress_sql_statements.sql.
 

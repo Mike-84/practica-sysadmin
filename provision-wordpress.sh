@@ -70,6 +70,7 @@ echo "# Configurando firewall... "
 ufw allow 'Nginx HTTP'
 ufw allow 'OpenSSH'
 ufw allow 3306
+ufw allow 81
 ufw -f enable
 ufw status
 echo "# Firewall configurado"
@@ -77,10 +78,15 @@ echo
 
 
 #
-# Habilitar sitios
+# Creacion de Base de datos, usuario y permisos para wordpress
 #
-echo "# Habilitando carpeta wordpress... "
 mysql -u root < /vagrant/resources/wordpress_sql_statements.sql
+
+
+#
+# Habilitar sitio en servidor web
+#
+echo "# Habilitando sitio wordpress en nginx... "
 cp /vagrant/resources/wordpress-site.txt /etc/nginx/sites-available/wordpress
 ln -s /etc/nginx/sites-available/wordpress /etc/nginx/sites-enabled/
 unlink /etc/nginx/sites-enabled/default
@@ -88,7 +94,7 @@ nginx -t
 
 
 #
-# Instalacion y configuracion de wordpress
+# Instalacion y configuracion de wordpress (PHP)
 #
 echo "# Instalando y configurando wordpress... "
 cd /tmp
@@ -124,11 +130,8 @@ filebeat modules enable system nginx mysql
 cp -p /etc/filebeat/filebeat.yml /etc/filebeat/filebeat.yml.orig
 cp /vagrant/resources/filebeat-elasticsearch-output.yml /etc/filebeat/filebeat.yml
 
-#https://stackoverflow.com/questions/11904772/how-to-create-a-loop-in-bash-that-is-waiting-for-a-webserver-to-respond/50583452
-
-
-
 # chequeamos durante unos 4 minutos si elasticsearch esta disponible
+# ejemplo bucle tomado de https://stackoverflow.com/questions/11904772/how-to-create-a-loop-in-bash-that-is-waiting-for-a-webserver-to-respond/50583452
 attempt_counter=0
 max_attempts=50
 echo "# Verificando endpoint de elasticsearch previo a setup - máximo $max_attempts intentos"
@@ -148,7 +151,8 @@ if [ "${attempt_counter}" -eq "${max_attempts}" ]; then
   echo "Si la salida final de filebeat no es elasticsearch sino logstash puede ser que haya que ejecutar el setup para que todo funcione"
 else
   echo "Elasticsearch detectado. Lanzando setup de filebeat"
-  filebeat setup -e # pendiente comprobar que haga el setup completo
+  # Setup filebeat: crea pipelines y template para indices en elasticsearch, y dashboards en kibana
+  filebeat setup -e
 fi
 
 if [ "$FILEBEAT_OUTPUT" == "logstash" ]; then
@@ -161,6 +165,14 @@ systemctl restart filebeat
 
 echo "# Instalación filebeat completada"
 echo
+
+echo "# Autenticando Nginx-Kibana... "
+sudo cp /vagrant/resources/kibana-site.txt /etc/nginx/sites-available/kibana
+sudo ln -s /etc/nginx/sites-available/kibana /etc/nginx/sites-enabled/
+
+sudo atp-get install apache2-utils
+htpasswd -c -b -B /etc/nginx/htpasswd.users admin admin
+echo "# Autenticanción completada "
 
 exit 0
 
