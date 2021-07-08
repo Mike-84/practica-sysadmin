@@ -167,10 +167,10 @@ echo "# Instalación filebeat completada"
 echo
 
 echo "# Autenticando Nginx-Kibana... "
-sudo cp /vagrant/resources/kibana-site.txt /etc/nginx/sites-available/kibana
-sudo ln -s /etc/nginx/sites-available/kibana /etc/nginx/sites-enabled/
+cp /vagrant/resources/kibana-site.txt /etc/nginx/sites-available/kibana
+ln -s /etc/nginx/sites-available/kibana /etc/nginx/sites-enabled/
 
-sudo atp-get install apache2-utils
+apt install apache2-utils
 htpasswd -c -b -B /etc/nginx/htpasswd.users admin admin
 echo "# Autenticanción completada "
 
