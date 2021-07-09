@@ -172,6 +172,7 @@ ln -s /etc/nginx/sites-available/kibana /etc/nginx/sites-enabled/
 
 apt install -y apache2-utils
 htpasswd -c -b -B /etc/nginx/htpasswd.users admin admin
+systemctl restart nginx.service
 echo "# Autenticanción completada "
 
 exit 0
