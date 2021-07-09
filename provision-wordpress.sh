@@ -170,7 +170,7 @@ echo "# Autenticando Nginx-Kibana... "
 cp /vagrant/resources/kibana-site.txt /etc/nginx/sites-available/kibana
 ln -s /etc/nginx/sites-available/kibana /etc/nginx/sites-enabled/
 
-apt install apache2-utils
+apt install -y apache2-utils
 htpasswd -c -b -B /etc/nginx/htpasswd.users admin admin
 echo "# Autenticanción completada "
 
