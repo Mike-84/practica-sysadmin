@@ -1,4 +1,3 @@
-
 #Instrucciones de uso
 
 Para arrancar estas 2 maquinas virtuales utilizan 6GB de memoria RAM: 5GB(elk) y 1GB(wordpress)
@@ -21,7 +20,7 @@ Con wordpress funcionando, se podrá ir a localhost:8081 y esto accederá a kiba
 	- http://localhost:9200/ <-> elasticsearch
 	- http://localhost:8080/ <-> wordpress
 	- http://localhost:8081/ <-> kibana acceso directo
-	- http://localhost:8082/ <-> kibana via nginx con autenticacion (htpasswd)
+	- http://localhost:8082/ <-> kibana via nginx con autenticacion (htpasswd) (usuario: admin / contraseña: admin)
 	
 
 - En MySQL se crea una base de datos (llamado wordpress), un usario (wordpressuser) y con una contraseña (Mik84), pero se pueden cambiar en la carpeta de resources y en el archivo wordpress_sql_statements.sql.
