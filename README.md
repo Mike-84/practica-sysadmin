@@ -1,4 +1,4 @@
-#Instrucciones de uso
+# Instrucciones de uso
 
 Para arrancar estas 2 maquinas virtuales utilizan 6GB de memoria RAM: 5GB(elk) y 1GB(wordpress)
 
@@ -42,7 +42,7 @@ soft lockup - CPU#1 stuck for 22s! [mysqld:7117]
 ```
 
 
-#Referencias
+# Referencias
 
 Instalación de LEMP y wordpress
 - https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-on-ubuntu-20-04
