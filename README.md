@@ -42,3 +42,18 @@ soft lockup - CPU#1 stuck for 22s! [mysqld:7117]
 ```
 
 
+#Referencias
+
+Instalación de LEMP y wordpress
+- https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-on-ubuntu-20-04
+- https://www.digitalocean.com/community/tutorials/como-instalar-wordpress-con-lemp-en-ubuntu-18-04-es
+
+Instalación de ELK y filebeat
+- https://www.elastic.co/guide/en/elastic-stack/current/installing-elastic-stack.html
+
+Uso del LVM:
+- https://www.tecmint.com/manage-and-create-lvm-parition-using-vgcreate-lvcreate-and-lvextend/
+
+Ejemplo del bucle que use en provision-wordpress.sh que uso para verificar que elasticsearch esta instalado correctamente:
+- https://stackoverflow.com/questions/11904772/how-to-create-a-loop-in-bash-that-is-waiting-for-a-webserver-to-respond/50583452
+
